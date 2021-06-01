@@ -3,11 +3,22 @@ import { store, key } from './store'
 import router from './router'
 import App from './App.vue'
 
-import { ElButton } from 'element-plus'
+import {
+  ElButton,
+  ElDialog
+} from 'element-plus'
 
 const app = createApp(App)
 
-app.component(ElButton.name, ElButton)
+const components = [
+  ElButton,
+  ElDialog
+]
+
+components.forEach(component => {
+  app.component(component.name, component)
+})
+//app.component(ElButton.name, ElButton)
 
 app.use(store, key)
 app.use(router)

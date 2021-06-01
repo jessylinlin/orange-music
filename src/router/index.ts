@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'About',
     component: () =>
-      import('../components/About.vue')
+      import('../views/About.vue')
   },
   {
     path: '/:currentPath(.*)*', //路由未匹配到
