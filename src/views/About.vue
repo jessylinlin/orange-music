@@ -83,6 +83,23 @@ export default defineComponent({
     }
     return { user, isShowButton, showButton };
   },
+  methods: {
+    sendApp() {
+      let data = "给原生传值";
+      //调用原生方法  给原生传data值  然后接收原生回传回来的值
+      this.$bridge.callhandler("testMethod", data, (fromNativeData) => {
+        // 处理返回数据
+        this.operatorId = fromNativeData;
+      });
+    },
+  },
+  mounted() {
+    //注册js方法供OC调用
+    this.$bridge.registerhandler("showAlert", (data, responseCallback) => {
+      this.operatorId = data; //接收原生回传过来的值
+      responseCallback("https://www.baidu.com"); //把值返回给原生
+    });
+  },
 });
 </script>
 <style scoped>

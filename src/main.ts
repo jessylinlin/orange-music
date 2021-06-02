@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { store, key } from './store'
 import router from './router'
 import App from './App.vue'
+import jsBridge from './util/bridge.js'
 
 import {
   ElButton,
@@ -9,6 +10,9 @@ import {
 } from 'element-plus'
 
 const app = createApp(App)
+
+//vue2: vue.prototype.bridge = jsBridge
+app.config.globalProperties.$bridge = jsBridge
 
 const components = [
   ElButton,
